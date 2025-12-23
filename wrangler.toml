@@ -5,7 +5,7 @@ pages_build_output_dir = "public"
 [[d1_databases]]
 binding = "DB"
 database_name = "coaching-db"
-database_id = "your-database-id-here"
+database_id = "contacts"
 
 [vars]
 # Add any environment variables here if needed
@@ -14,4 +14,5 @@ database_id = "your-database-id-here"
 [env.development.d1_databases]
 binding = "DB"
 database_name = "coaching-db"
+
 database_id = "your-database-id-here"
