@@ -1,0 +1,17 @@
+name = "coaching-app"
+compatibility_date = "2023-12-01"
+pages_build_output_dir = "public"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "coaching-db"
+database_id = "your-database-id-here"
+
+[vars]
+# Add any environment variables here if needed
+
+# For local development
+[env.development.d1_databases]
+binding = "DB"
+database_name = "coaching-db"
+database_id = "your-database-id-here"

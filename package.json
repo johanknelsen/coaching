@@ -1,0 +1,19 @@
+{
+  "name": "coaching-app",
+  "version": "1.0.0",
+  "description": "Dating coaching contact form",
+  "main": "functions/api/submit.js",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages publish public",
+    "db:create": "wrangler d1 create coaching-db",
+    "db:init": "wrangler d1 execute coaching-db --file=./schema.sql",
+    "db:local": "wrangler d1 execute coaching-db --local --file=./schema.sql"
+  },
+  "keywords": ["coaching", "cloudflare", "pages", "d1"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
