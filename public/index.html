@@ -9,8 +9,9 @@
         h1 { text-align: center; }
         form { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         label { display: block; margin-top: 15px; font-weight: bold; }
-        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
-        button { margin-top: 20px; padding: 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        select:invalid { color: #999; }
+        button { margin-top: 30px; padding: 12px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%; }
         button:hover { background: #0056b3; }
         #status { margin-top: 20px; font-weight: bold; text-align: center; }
     </style>
@@ -28,13 +29,16 @@
         
         <label for="gender">Gender</label>
         <select id="gender" name="gender">
-            <option value="">Prefer not to say</option>
+            <option value="" disabled selected>Prefer not to say</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
+            <option value="non-binary">Non-binary</option>
+            <option value="other">Other</option>
         </select>
         
-        <label for="status">Current Relationship Status</label>
-        <select id="status" name="status">
+        <label for="status">Current Relationship Status *</label>
+        <select id="status" name="status" required>
+            <option value="" disabled selected>Select your status</option>
             <option value="single">Single</option>
             <option value="dating">Casually Dating</option>
             <option value="relationship">In a Relationship</option>
@@ -63,6 +67,7 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             status.textContent = 'Submitting...';
+            status.style.color = 'black';
             
             const formData = new FormData(form);
             
@@ -75,16 +80,15 @@
                 const result = await response.json();
                 
                 if (response.ok) {
-                    status.textContent = 'Thank you! Your inquiry has been submitted.';
+                    status.textContent = 'Thank you! Your inquiry has been saved. We\'ll contact you soon.';
                     status.style.color = 'green';
                     form.reset();
-                    // Optional: window.location.href = '/thank-you.html';
                 } else {
-                    status.textContent = `Error: ${result.error}`;
+                    status.textContent = `Error: ${result.error || 'Submission failed'}`;
                     status.style.color = 'red';
                 }
             } catch (err) {
-                status.textContent = 'Network error. Please try again.';
+                status.textContent = 'Network error. Please try again later.';
                 status.style.color = 'red';
             }
         });
