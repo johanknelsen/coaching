@@ -11,9 +11,10 @@ database_id = "contacts"
 # Add any environment variables here if needed
 
 # For local development
-[env.production.d1_databases]
+[[env.production.d1_databases]]
 binding = "DB"
 database_name = "coaching-db"
 
 database_id = "contacts"
+
 
